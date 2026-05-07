@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const differentiators = [
   {
@@ -14,6 +14,7 @@ const differentiators = [
   {
     title: "Stablecoin-native",
     description: "Designed around predictable, programmable, real-world payments rather than volatile gas UX.",
+    warm: true,
   },
   {
     title: "Built for machine speed",
@@ -28,6 +29,44 @@ const differentiators = [
     description: "EVM compatibility makes AIVIVE easy to connect with wallets, protocols, and existing infrastructure.",
   },
 ];
+
+function DiffCard({ item, idx, isVisible }: { item: typeof differentiators[0]; idx: number; isVisible: boolean }) {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--spotlight-x', `${x}%`);
+    e.currentTarget.style.setProperty('--spotlight-y', `${y}%`);
+  }, []);
+
+  return (
+    <div
+      className={`relative glass-card p-8 lg:p-10 group hover:-translate-y-1 transition-all duration-500 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${idx * 100}ms` }}
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[inherit]"
+        style={{
+          background: 'radial-gradient(300px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), oklch(0.902 0.152 174.5 / 0.08), transparent 60%)',
+        }}
+      />
+      <div className="relative z-10">
+        <h3 className="font-display text-xl lg:text-2xl mb-4 group-hover:text-primary transition-colors">
+          {item.title}
+        </h3>
+        <p className="text-muted-foreground leading-relaxed">
+          {item.description}
+        </p>
+        {'warm' in item && item.warm && (
+          <span className="inline-block mt-4 status-dot-amber" />
+        )}
+      </div>
+    </div>
+  );
+}
 
 export function PricingSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -66,22 +105,9 @@ export function PricingSection() {
         </div>
 
         {/* Differentiators Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-primary/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {differentiators.map((item, idx) => (
-            <div
-              key={item.title}
-              className={`bg-background p-8 lg:p-10 group hover:bg-primary/5 transition-all duration-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${idx * 100}ms` }}
-            >
-              <h3 className="font-display text-xl lg:text-2xl mb-4 group-hover:text-primary transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+            <DiffCard key={item.title} item={item} idx={idx} isVisible={isVisible} />
           ))}
         </div>
       </div>

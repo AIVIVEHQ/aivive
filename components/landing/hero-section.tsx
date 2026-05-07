@@ -13,6 +13,12 @@ const trustItems = [
   "EVM-compatible",
 ];
 
+const statusItems = [
+  { label: "agent online", color: "coral" as const },
+  { label: "policy verified", color: "aqua" as const },
+  { label: "settlement ready", color: "amber" as const },
+];
+
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -21,12 +27,39 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden grain-overlay">
+      {/* Gradient halo - aqua top-left */}
+      <div
+        className="absolute -top-32 -left-32 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.902 0.152 174.5 / 0.10), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+
+      {/* Gradient halo - coral bottom-right */}
+      <div
+        className="absolute -bottom-20 -right-20 w-[300px] h-[300px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+
+      {/* Subtle amber warm light - center right */}
+      <div
+        className="absolute top-1/3 right-1/4 w-[200px] h-[200px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.04), transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+
       {/* Animated sphere background */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] opacity-40 pointer-events-none">
         <AnimatedSphere />
       </div>
-      
+
       {/* Subtle grid lines */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         {[...Array(8)].map((_, i) => (
@@ -52,11 +85,11 @@ export function HeroSection() {
           />
         ))}
       </div>
-      
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
         {/* Eyebrow */}
-        <div 
-          className={`mb-8 transition-all duration-700 ${
+        <div
+          className={`mb-4 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -65,10 +98,31 @@ export function HeroSection() {
             AIVIVE TESTNET COMING SOON
           </span>
         </div>
-        
+
+        {/* Protocol status strip */}
+        <div
+          className={`mb-8 transition-all duration-700 delay-100 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <div className="inline-flex items-center gap-4 text-xs font-mono text-muted-foreground">
+            {statusItems.map((item, i) => (
+              <span key={item.label} className="inline-flex items-center gap-2">
+                {i > 0 && <span className="text-primary/20 mr-2">|</span>}
+                <span className={
+                  item.color === "coral" ? "status-dot-warm" :
+                  item.color === "amber" ? "status-dot-amber" :
+                  "w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+                } />
+                {item.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Main headline */}
-        <div className="mb-12">
-          <h1 
+        <div className="mb-4">
+          <h1
             className={`text-[clamp(2.5rem,10vw,7rem)] font-display leading-[0.95] tracking-tight transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
@@ -78,44 +132,55 @@ export function HeroSection() {
             <span className="block text-primary">for autonomous agents</span>
           </h1>
         </div>
-        
+
+        {/* Animated pulse sweep line */}
+        <div className="relative h-px w-full max-w-3xl mb-12 overflow-hidden">
+          <div className="absolute inset-0 bg-primary/10" />
+          <div
+            className="absolute inset-y-0 w-1/3 pulse-sweep"
+            style={{
+              background: 'linear-gradient(90deg, transparent, oklch(0.902 0.152 174.5 / 0.6), oklch(0.753 0.155 41.6 / 0.2), transparent)',
+            }}
+          />
+        </div>
+
         {/* Description */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-end">
-          <p 
+          <p
             className={`text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-xl transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             AIVIVE gives AI agents verifiable identity, programmable permissions, and stablecoin-native settlement, so they can transact, coordinate, and operate onchain with trust.
           </p>
-          
+
           {/* CTAs */}
-          <div 
+          <div
             className={`flex flex-col sm:flex-row items-start gap-4 transition-all duration-700 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-full group"
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-full group transition-shadow hover:shadow-[0_0_30px_oklch(0.902_0.152_174.5/0.3)]"
             >
               Join Waitlist
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/40"
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-shadow hover:shadow-[0_0_20px_oklch(0.753_0.155_41.6/0.08)]"
             >
               Read the Litepaper
             </Button>
           </div>
         </div>
-        
+
       </div>
-      
+
       {/* Trust strip */}
-      <div 
+      <div
         className={`absolute bottom-24 left-0 right-0 transition-all duration-700 delay-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
@@ -124,9 +189,9 @@ export function HeroSection() {
           <p className="text-sm font-mono text-muted-foreground mb-6">Built for the next era of autonomous crypto</p>
           <div className="flex flex-wrap gap-4">
             {trustItems.map((item) => (
-              <span 
-                key={item} 
-                className="px-4 py-2 text-sm border border-primary/20 rounded-full text-foreground/80 bg-card/50"
+              <span
+                key={item}
+                className="px-4 py-2 text-sm border border-primary/15 rounded-full text-foreground/80 glass-card"
               >
                 {item}
               </span>

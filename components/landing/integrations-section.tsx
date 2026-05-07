@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 const ecosystemCategories = [
   { name: "Agent Frameworks", examples: "AutoGPT, LangChain, CrewAI" },
@@ -9,9 +9,48 @@ const ecosystemCategories = [
   { name: "Payment Providers", examples: "Stripe, Coinbase, MoonPay" },
   { name: "Data Networks", examples: "The Graph, Chainlink, Pyth" },
   { name: "DeFi Protocols", examples: "Uniswap, Aave, Compound" },
-  { name: "AI Infrastructure", examples: "OpenAI, Anthropic, Replicate" },
+  { name: "AI Infrastructure", examples: "OpenAI, Anthropic, Replicate", warm: true },
   { name: "Developer Platforms", examples: "Vercel, Railway, Alchemy" },
 ];
+
+function EcoCard({ category, index, isVisible }: { category: typeof ecosystemCategories[0]; index: number; isVisible: boolean }) {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--spotlight-x', `${x}%`);
+    e.currentTarget.style.setProperty('--spotlight-y', `${y}%`);
+  }, []);
+
+  return (
+    <div
+      className={`relative glass-card p-6 lg:p-8 group hover:-translate-y-1 transition-all duration-500 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${index * 75}ms` }}
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[inherit]"
+        style={{
+          background: `radial-gradient(250px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), ${
+            'warm' in category && category.warm
+              ? 'oklch(0.870 0.130 85 / 0.06)'
+              : 'oklch(0.902 0.152 174.5 / 0.08)'
+          }, transparent 60%)`,
+        }}
+      />
+      <div className="relative z-10">
+        <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">
+          {category.name}
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          {category.examples}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export function IntegrationsSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +69,7 @@ export function IntegrationsSection() {
   }, []);
 
   return (
-    <section id="ecosystem" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden bg-card">
+    <section id="ecosystem" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div
@@ -53,22 +92,9 @@ export function IntegrationsSection() {
         </div>
 
         {/* Ecosystem Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-primary/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {ecosystemCategories.map((category, index) => (
-            <div
-              key={category.name}
-              className={`bg-card p-6 lg:p-8 group hover:bg-primary/5 transition-all duration-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${index * 75}ms` }}
-            >
-              <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">
-                {category.name}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {category.examples}
-              </p>
-            </div>
+            <EcoCard key={category.name} category={category} index={index} isVisible={isVisible} />
           ))}
         </div>
       </div>

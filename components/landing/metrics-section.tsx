@@ -38,7 +38,7 @@ function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffi
   }, [end, hasAnimated]);
 
   return (
-    <div ref={ref} className="text-6xl lg:text-8xl font-display tracking-tight">
+    <div ref={ref} className="text-6xl lg:text-8xl font-display tracking-tight" style={{ textShadow: '0 0 40px oklch(0.902 0.152 174.5 / 0.15)' }}>
       {prefix}{count.toLocaleString()}{suffix}
     </div>
   );
@@ -115,7 +115,7 @@ export function MetricsSection() {
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="status-dot-warm" />
               Live
             </span>
             <span className="text-foreground/30">|</span>
@@ -124,11 +124,11 @@ export function MetricsSection() {
         </div>
         
         {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className={`bg-background p-8 lg:p-12 transition-all duration-700 ${
+              className={`glass-card p-8 lg:p-12 transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}

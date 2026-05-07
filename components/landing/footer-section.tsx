@@ -89,7 +89,7 @@ export function FooterSection() {
                       >
                         {link.name}
                         {"badge" in link && link.badge && (
-                          <span className="text-xs px-2 py-0.5 bg-primary text-primary-foreground rounded-full">
+                          <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'oklch(0.753 0.155 41.6 / 0.15)', color: 'oklch(0.877 0.072 47.9)', border: '1px solid oklch(0.753 0.155 41.6 / 0.2)' }}>
                             {link.badge}
                           </span>
                         )}

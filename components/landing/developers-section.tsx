@@ -180,7 +180,9 @@ export function DevelopersSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
-            <div className="border border-primary/20 bg-card">
+            <div className="border border-primary/20 bg-card shimmer-border rounded-lg overflow-hidden">
+              {/* Gradient top accent */}
+              <div className="h-0.5" style={{ background: 'linear-gradient(90deg, oklch(0.902 0.152 174.5 / 0.6), oklch(0.753 0.155 41.6 / 0.2), transparent)' }} />
               {/* Tabs */}
               <div className="flex items-center border-b border-primary/10">
                 {codeExamples.map((example, idx) => (
@@ -216,7 +218,7 @@ export function DevelopersSection() {
               </div>
               
               {/* Code content */}
-              <div className="p-8 font-mono text-sm min-h-[280px]">
+              <div className="p-8 font-mono text-sm min-h-[280px] grain-overlay">
                 <pre className="text-foreground/80">
                   {codeExamples[activeTab].code.split('\n').map((line, lineIndex) => (
                     <div 

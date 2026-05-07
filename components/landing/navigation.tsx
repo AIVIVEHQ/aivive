@@ -70,7 +70,7 @@ export function Navigation() {
             </a>
             <Button
               size="sm"
-              className={`bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
+              className={`bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all duration-500 hover:shadow-[0_0_20px_oklch(0.902_0.152_174.5/0.3)] ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
               Join Waitlist
             </Button>

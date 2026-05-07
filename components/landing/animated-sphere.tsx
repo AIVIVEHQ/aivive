@@ -74,11 +74,18 @@ export function AnimatedSphere() {
       // Sort by z for depth
       points.sort((a, b) => a.z - b.z);
 
-      // Draw points with aqua color (AIVIVE primary)
+      // Draw points with aqua color, warm core for depth
       points.forEach((point) => {
         const alpha = 0.3 + (point.z + 1) * 0.5;
-        // Aqua color: rgb(79, 255, 216) = #4FFFD8
-        ctx.fillStyle = `rgba(79, 255, 216, ${alpha})`;
+        const distFromCenter = Math.sqrt(
+          Math.pow(point.x - centerX, 2) + Math.pow(point.y - centerY, 2)
+        ) / radius;
+        // Inner core points get a subtle coral tint
+        if (distFromCenter < 0.25 && point.z < -0.3) {
+          ctx.fillStyle = `rgba(255, 138, 92, ${alpha * 0.15})`;
+        } else {
+          ctx.fillStyle = `rgba(79, 255, 216, ${alpha})`;
+        }
         ctx.fillText(point.char, point.x, point.y);
       });
 

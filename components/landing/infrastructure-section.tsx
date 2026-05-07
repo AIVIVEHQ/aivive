@@ -38,8 +38,16 @@ export function InfrastructureSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden border-t border-primary/10">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden border-t border-primary/10 grain-overlay">
+      {/* Subtle coral halo */}
+      <div
+        className="absolute top-1/2 right-0 w-[300px] h-[300px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.04), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Content */}
           <div
@@ -79,7 +87,7 @@ export function InfrastructureSection() {
                   style={{ transitionDelay: `${index * 100 + 200}ms` }}
                 >
                   <div className="flex items-baseline gap-4">
-                    <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2" />
+                    <span className={`w-2 h-2 rounded-full shrink-0 mt-2 ${index === problemPoints.length - 1 ? 'bg-coral' : 'bg-primary'}`} />
                     <div>
                       <span className="text-lg lg:text-xl font-medium text-foreground">{point.issue}</span>
                       <span className="text-lg lg:text-xl text-muted-foreground">, {point.detail}.</span>
