@@ -66,17 +66,17 @@ export function CtaSection() {
                 <div className="flex-1">
                   <span className="inline-flex items-center gap-3 text-sm font-mono text-primary mb-6">
                     <span className="status-dot-warm" />
-                    COMING SOON
+                    SUMMER 2026
                   </span>
 
                   <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
-                    Build the agent
+                    Join the creative
                     <br />
-                    economy with AIVIVE
+                    economy
                   </h2>
 
                   <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                    Join the early network of developers, protocols, and AI builders preparing for autonomous onchain execution.
+                    The AI feed that pays for itself. Create, discover, remix — and every image you generate makes $AVV rarer. Launching summer 2026.
                   </p>
 
                   <div className="flex flex-col sm:flex-row items-start gap-4">

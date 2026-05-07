@@ -6,17 +6,17 @@ import { ArrowRight } from "lucide-react";
 import { AnimatedSphere } from "./animated-sphere";
 
 const trustItems = [
-  "Agent-native identity",
-  "Stablecoin settlement",
-  "Programmable permissions",
-  "Verifiable execution",
-  "EVM-compatible",
+  "Solana native",
+  "USDC payments",
+  "Weekly burn cycle",
+  "CertiK audited",
+  "55% to community",
 ];
 
 const statusItems = [
-  { label: "agent online", color: "coral" as const },
-  { label: "policy verified", color: "aqua" as const },
-  { label: "settlement ready", color: "amber" as const },
+  { label: "feed building", color: "coral" as const },
+  { label: "burn cycle designed", color: "aqua" as const },
+  { label: "creators welcome", color: "amber" as const },
 ];
 
 export function HeroSection() {
@@ -95,7 +95,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-primary">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            AIVIVE TESTNET COMING SOON
+            LAUNCHING SUMMER 2026
           </span>
         </div>
 
@@ -127,9 +127,9 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block">The crypto</span>
-            <span className="block">execution layer</span>
-            <span className="block text-primary">for autonomous agents</span>
+            <span className="block">The first</span>
+            <span className="block">Recursive</span>
+            <span className="block text-primary">AI Protocol</span>
           </h1>
         </div>
 
@@ -151,7 +151,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            AIVIVE gives AI agents verifiable identity, programmable permissions, and stablecoin-native settlement, so they can transact, coordinate, and operate onchain with trust.
+            An AI image feed where every dollar of platform revenue automatically buys back and burns $AVV on Solana. Use the product. Make the asset rarer.
           </p>
 
           {/* CTAs */}
@@ -172,7 +172,7 @@ export function HeroSection() {
               variant="outline"
               className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-shadow hover:shadow-[0_0_20px_oklch(0.753_0.155_41.6/0.08)]"
             >
-              Read the Litepaper
+              Read Whitepaper
             </Button>
           </div>
         </div>
@@ -186,7 +186,7 @@ export function HeroSection() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <p className="text-sm font-mono text-muted-foreground mb-6">Built for the next era of autonomous crypto</p>
+          <p className="text-sm font-mono text-muted-foreground mb-6">AI that gives. Alive. Warm. Sharp.</p>
           <div className="flex flex-wrap gap-4">
             {trustItems.map((item) => (
               <span

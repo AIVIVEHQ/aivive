@@ -7,59 +7,59 @@ import { ArrowRight } from "lucide-react";
 
 const codeExamples = [
   {
-    label: "Install",
-    code: `npm install @aivive/sdk
+    label: "Stack",
+    code: `# Frontend
+Next.js 16 (App Router) + React 19
+Tailwind CSS v4 + shadcn/ui
+Vercel Edge deployment
 
-# or
-yarn add @aivive/sdk
-pnpm add @aivive/sdk`,
-  },
-  {
-    label: "Identity",
-    code: `import { AIVIVE } from '@aivive/sdk'
-
-const aivive = new AIVIVE({
-  apiKey: process.env.AIVIVE_KEY
-})
-
-// Create agent passport
-const passport = await aivive.createPassport({
-  agent: 'trading-bot-v1',
-  permissions: ['swap', 'transfer'],
-  budget: { daily: '1000 USDC' }
-})`,
+# AI Providers
+fal.ai    → FLUX.1 Schnell / Dev
+OpenAI    → gpt-image-2
+Google    → Imagen 4 Ultra`,
   },
   {
     label: "Payments",
-    code: `// Execute payment with policy checks
-const payment = await aivive.pay({
-  to: '0x...',
-  amount: '50 USDC',
-  reason: 'API subscription',
-  passportId: passport.id
-})
+    code: `# User Payment Flow (Base mainnet)
+Privy embedded wallet (EVM + Solana)
+USDC on Base → Credit Ledger
 
-// Settlement confirmed
-console.log('Tx:', payment.hash)`,
+# Cross-Chain (Circle CCTP)
+Safe 2-of-3 multisig → CCTP burn
+USDC destroyed on Base
+USDC minted on Solana (~15 min)`,
+  },
+  {
+    label: "Token",
+    code: `# $AVV on Solana
+SPL Token — 10B total supply
+Squads 2-of-3 multisig authority
+CertiK audited
+
+# Weekly Burn Cycle
+Jupiter swap: USDC → AVV
+SPL Token Burn: permanent destruction
+Dashboard: aivive.ai/burn
+Dune: dune.com/aivive`,
   },
 ];
 
 const features = [
-  { 
-    title: "SDKs for agent identity", 
-    description: "Build with TypeScript, Python, or Rust."
+  {
+    title: "Privy dual-chain wallets",
+    description: "Embedded EVM + Solana wallets. No seed phrases."
   },
-  { 
-    title: "Smart account modules", 
-    description: "Plug-and-play policy enforcement."
+  {
+    title: "Circle CCTP bridge",
+    description: "Native burn-mint. No custodial bridge risk."
   },
-  { 
-    title: "Stablecoin primitives", 
-    description: "Native USDC/USDT settlement rails."
+  {
+    title: "Jupiter aggregation",
+    description: "Best execution for USDC-to-AVV swaps."
   },
-  { 
-    title: "Webhooks & audit logs", 
-    description: "Full visibility into agent actions."
+  {
+    title: "On-chain verification",
+    description: "Every flow auditable on BaseScan + Solscan."
   },
 ];
 
@@ -69,20 +69,20 @@ const codeAnimationStyles = `
     transform: translateX(-8px);
     animation: devLineReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  
+
   @keyframes devLineReveal {
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
-  
+
   .dev-code-char {
     opacity: 0;
     filter: blur(8px);
     animation: devCharReveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  
+
   @keyframes devCharReveal {
     to {
       opacity: 1;
@@ -128,17 +128,17 @@ export function DevelopersSection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-primary mb-6">
               <span className="w-8 h-px bg-primary/30" />
-              BUILD ON AIVIVE
+              ARCHITECTURE
             </span>
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
-              Give your agents
+              Built with the best
               <br />
-              <span className="text-muted-foreground">a wallet they can use</span>
+              <span className="text-muted-foreground">of crypto and AI</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              Integrate AIVIVE into agent frameworks, crypto apps, wallets, games, data networks, AI tools, and payment products. Start with identity and permissions, then scale into automated settlement.
+              No new L1. No custom bridge. Aivive operates on top of Solana and Base, inheriting the security and infrastructure of two battle-tested ecosystems.
             </p>
-            
+
             {/* Features */}
             <div className="grid grid-cols-2 gap-6 mb-12">
               {features.map((feature, index) => (
@@ -157,23 +157,23 @@ export function DevelopersSection() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-full group"
               >
-                Start Building
+                Read Whitepaper
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5"
               >
-                View Docs
+                View on GitHub
               </Button>
             </div>
           </div>
-          
+
           {/* Right: Code block */}
           <div
             className={`lg:sticky lg:top-32 transition-all duration-700 delay-200 ${
@@ -216,13 +216,13 @@ export function DevelopersSection() {
                   )}
                 </button>
               </div>
-              
+
               {/* Code content */}
               <div className="p-8 font-mono text-sm min-h-[280px] grain-overlay">
                 <pre className="text-foreground/80">
                   {codeExamples[activeTab].code.split('\n').map((line, lineIndex) => (
-                    <div 
-                      key={`${activeTab}-${lineIndex}`} 
+                    <div
+                      key={`${activeTab}-${lineIndex}`}
                       className="leading-loose dev-code-line"
                       style={{ animationDelay: `${lineIndex * 80}ms` }}
                     >
@@ -244,15 +244,15 @@ export function DevelopersSection() {
                 </pre>
               </div>
             </div>
-            
+
             {/* Links */}
             <div className="mt-6 flex items-center gap-6 text-sm">
               <a href="#" className="text-primary hover:underline underline-offset-4">
-                Read the docs
+                Whitepaper on GitBook
               </a>
               <span className="text-primary/20">|</span>
               <a href="#" className="text-muted-foreground hover:text-foreground">
-                View on GitHub
+                Dune Analytics
               </a>
             </div>
           </div>

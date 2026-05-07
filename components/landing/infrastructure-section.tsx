@@ -2,22 +2,18 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const problemPoints = [
+const failedPatterns = [
   {
-    issue: "Agents need scoped access",
-    detail: "not unlimited wallet control",
+    pattern: "Subscription SaaS",
+    detail: "Predictable for platforms, nothing for users. All surplus captured by centralized providers.",
   },
   {
-    issue: "Users need approval once",
-    detail: "not constant manual signing",
+    pattern: "Token-as-fee",
+    detail: "Adds friction to every interaction and forces users into price speculation just to use the product.",
   },
   {
-    issue: "Builders need payment rails",
-    detail: "designed for machine-speed workflows",
-  },
-  {
-    issue: "Protocols need verifiable intent",
-    detail: "execution, and settlement records",
+    pattern: "Token-as-governance",
+    detail: "Mostly speculative, no structural price floor. Governance without economic alignment.",
   },
 ];
 
@@ -57,40 +53,44 @@ export function InfrastructureSection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-primary mb-6">
               <span className="w-8 h-px bg-primary/30" />
-              WHY AIVIVE
+              THE PROBLEM
             </span>
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
-              Agents are ready
+              AI made content
               <br />
-              to act.
+              infinite.
               <br />
-              <span className="text-muted-foreground">Crypto rails are not.</span>
+              <span className="text-muted-foreground">Nothing stayed scarce.</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              AI agents can search, decide, negotiate, and execute. But when value moves onchain, every action still needs identity, limits, permissions, auditability, and settlement. Existing crypto infrastructure was built for humans, traders, and apps, not for autonomous agents operating continuously across wallets, protocols, and services.
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+              The AI image generation market is projected to reach $50B by 2027. But the entire surplus flows to centralized subscription platforms. Zero value accrues to the creative users producing the work, or the open networks underwriting it.
+            </p>
+            <p className="text-lg text-foreground/90 leading-relaxed border-l-2 border-primary/30 pl-6">
+              Aivive introduces a fourth pattern: a programmable share of platform revenue is automatically routed into permanent on-chain destruction of $AVV.
             </p>
           </div>
 
-          {/* Right: Problem points */}
+          {/* Right: Failed patterns */}
           <div
             className={`transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
+            <p className="text-sm font-mono text-muted-foreground mb-6">THREE PATTERNS THAT FAILED</p>
             <div className="space-y-0">
-              {problemPoints.map((point, index) => (
+              {failedPatterns.map((item, index) => (
                 <div
-                  key={point.issue}
+                  key={item.pattern}
                   className={`py-6 border-b border-primary/10 last:border-b-0 transition-all duration-500 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 100 + 200}ms` }}
                 >
-                  <div className="flex items-baseline gap-4">
-                    <span className={`w-2 h-2 rounded-full shrink-0 mt-2 ${index === problemPoints.length - 1 ? 'bg-coral' : 'bg-primary'}`} />
+                  <div className="flex items-start gap-4">
+                    <span className={`w-2 h-2 rounded-full shrink-0 mt-2 ${index === failedPatterns.length - 1 ? 'bg-coral' : 'bg-primary'}`} />
                     <div>
-                      <span className="text-lg lg:text-xl font-medium text-foreground">{point.issue}</span>
-                      <span className="text-lg lg:text-xl text-muted-foreground">, {point.detail}.</span>
+                      <span className="text-lg lg:text-xl font-medium text-foreground">{item.pattern}</span>
+                      <p className="text-base text-muted-foreground mt-2">{item.detail}</p>
                     </div>
                   </div>
                 </div>

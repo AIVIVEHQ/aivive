@@ -5,31 +5,31 @@ import { AnimatedWave } from "./animated-wave";
 
 const footerLinks = {
   Product: [
-    { name: "Network", href: "#network" },
-    { name: "Agent Passport", href: "#agent-layer" },
-    { name: "Payments", href: "#payments" },
-    { name: "Explorer", href: "#" },
+    { name: "Feed", href: "#product" },
+    { name: "Studio", href: "#product" },
+    { name: "Burn Dashboard", href: "#protocol" },
+    { name: "Whitepaper", href: "#" },
     { name: "App", href: "#" },
   ],
-  Developers: [
-    { name: "Docs", href: "#developers" },
-    { name: "SDK", href: "#developers" },
+  Resources: [
+    { name: "GitBook", href: "#" },
     { name: "GitHub", href: "#" },
-    { name: "Status", href: "#" },
-    { name: "Faucet", href: "#" },
+    { name: "Dune Analytics", href: "#" },
+    { name: "BaseScan", href: "#" },
+    { name: "Solscan", href: "#" },
   ],
   Company: [
     { name: "About", href: "#" },
     { name: "Blog", href: "#" },
     { name: "Careers", href: "#", badge: "Hiring" },
     { name: "Brand Kit", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "mailto:contact@aivive.ai" },
   ],
   Community: [
-    { name: "X", href: "#" },
+    { name: "X", href: "https://x.com/AIVIVEHQ" },
+    { name: "Telegram", href: "https://t.me/AIVIVEHQ" },
     { name: "Discord", href: "#" },
-    { name: "Telegram", href: "#" },
-    { name: "LinkedIn", href: "#" },
+    { name: "Medium", href: "#" },
   ],
 };
 
@@ -46,7 +46,7 @@ export function FooterSection() {
       <div className="absolute inset-0 h-64 opacity-20 pointer-events-none overflow-hidden">
         <AnimatedWave />
       </div>
-      
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Main Footer */}
         <div className="py-16 lg:py-24">
@@ -57,8 +57,11 @@ export function FooterSection() {
                 <span className="text-2xl font-display text-primary">AIVIVE</span>
               </a>
 
-              <p className="text-muted-foreground leading-relaxed mb-8 max-w-xs">
-                The crypto execution layer for autonomous agents.
+              <p className="text-muted-foreground leading-relaxed mb-4 max-w-xs">
+                The first Recursive AI Protocol. AI that gives.
+              </p>
+              <p className="text-sm text-muted-foreground/70 mb-8 max-w-xs">
+                Alive. Warm. Sharp.
               </p>
 
               {/* Social Links */}

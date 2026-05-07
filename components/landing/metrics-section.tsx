@@ -12,7 +12,6 @@ function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffi
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          let start = 0;
           const duration = 2000;
           const startTime = performance.now();
 
@@ -45,41 +44,35 @@ function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffi
 }
 
 const metrics = [
-  { 
-    value: 2847392, 
-    suffix: "", 
+  {
+    value: 10,
+    suffix: "B",
     prefix: "",
-    label: "API requests today",
+    label: "Total $AVV supply (fixed, not mintable)",
   },
-  { 
-    value: 99, 
-    suffix: ".99%", 
+  {
+    value: 55,
+    suffix: "%",
     prefix: "",
-    label: "Uptime this quarter",
+    label: "Allocated to community (Ecosystem + Airdrop)",
   },
-  { 
-    value: 23, 
-    suffix: "ms", 
+  {
+    value: 3,
+    suffix: "",
     prefix: "",
-    label: "Average response time",
+    label: "AI model tiers ($0.003 to $0.04+ per image)",
   },
-  { 
-    value: 184, 
-    suffix: "", 
-    prefix: "",
-    label: "Countries served",
+  {
+    value: 15,
+    suffix: "min",
+    prefix: "~",
+    label: "Circle CCTP cross-chain settlement",
   },
 ];
 
 export function MetricsSection() {
-  const [time, setTime] = useState(new Date());
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -94,35 +87,35 @@ export function MetricsSection() {
   }, []);
 
   return (
-    <section id="studio" ref={sectionRef} className="relative py-24 lg:py-32 border-y border-foreground/10">
+    <section ref={sectionRef} className="relative py-24 lg:py-32 border-y border-foreground/10">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-24">
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Live metrics
+              Key numbers
             </span>
             <h2
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              Performance you
+              The numbers
               <br />
-              can measure.
+              behind the loop.
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="status-dot-warm" />
-              Live
+              Pre-launch
             </span>
             <span className="text-foreground/30">|</span>
-            <span>{time.toLocaleTimeString()}</span>
+            <span>Summer 2026</span>
           </div>
         </div>
-        
+
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {metrics.map((metric, index) => (
@@ -133,9 +126,9 @@ export function MetricsSection() {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <AnimatedCounter 
-                end={typeof metric.value === 'number' ? metric.value : 0} 
-                suffix={metric.suffix} 
+              <AnimatedCounter
+                end={typeof metric.value === 'number' ? metric.value : 0}
+                suffix={metric.suffix}
                 prefix={metric.prefix}
               />
               <div className="mt-4 text-lg text-muted-foreground">{metric.label}</div>

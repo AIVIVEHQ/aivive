@@ -3,14 +3,14 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
 const ecosystemCategories = [
-  { name: "Agent Frameworks", examples: "AutoGPT, LangChain, CrewAI" },
-  { name: "Wallets", examples: "MetaMask, Rainbow, Safe" },
-  { name: "Stablecoin Issuers", examples: "Circle, Tether, MakerDAO" },
-  { name: "Payment Providers", examples: "Stripe, Coinbase, MoonPay" },
-  { name: "Data Networks", examples: "The Graph, Chainlink, Pyth" },
-  { name: "DeFi Protocols", examples: "Uniswap, Aave, Compound" },
-  { name: "AI Infrastructure", examples: "OpenAI, Anthropic, Replicate", warm: true },
-  { name: "Developer Platforms", examples: "Vercel, Railway, Alchemy" },
+  { name: "AI Models", examples: "FLUX.1, gpt-image-2, Imagen 4 Ultra" },
+  { name: "Wallets", examples: "Privy, Safe (Base), Squads (Solana)" },
+  { name: "Stablecoins", examples: "USDC via Circle CCTP" },
+  { name: "Payments", examples: "Base mainnet, USDC native" },
+  { name: "Analytics", examples: "Dune Analytics, Solscan, BaseScan" },
+  { name: "DeFi", examples: "Jupiter, Raydium" },
+  { name: "AI Providers", examples: "fal.ai, OpenAI, Replicate", warm: true },
+  { name: "Infrastructure", examples: "Vercel, Supabase, Cloudflare R2" },
 ];
 
 function EcoCard({ category, index, isVisible }: { category: typeof ecosystemCategories[0]; index: number; isVisible: boolean }) {
@@ -82,12 +82,12 @@ export function IntegrationsSection() {
             ECOSYSTEM
           </span>
           <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
-            For builders, agents,
+            Powered by
             <br />
-            <span className="text-muted-foreground">wallets, and payment networks</span>
+            <span className="text-muted-foreground">battle-tested infrastructure</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            AIVIVE is designed to become a coordination layer for the agent economy, connecting crypto applications, AI tools, payment providers, DeFi protocols, and infrastructure networks.
+            No new chain, no custom bridge. Aivive builds on top of Solana, Base, Circle CCTP, Jupiter, and the best AI model providers — inheriting security and liquidity from day one.
           </p>
         </div>
 
