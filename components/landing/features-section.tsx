@@ -120,10 +120,10 @@ function BurnVisual() {
       {/* Burn particles flying outward */}
       {[0, 60, 120, 180, 240, 300].map((angle, i) => {
         const rad = (angle * Math.PI) / 180;
-        const x1 = 100 + Math.cos(rad) * 30;
-        const y1 = 80 + Math.sin(rad) * 30;
-        const x2 = 100 + Math.cos(rad) * 50;
-        const y2 = 80 + Math.sin(rad) * 50;
+        const x1 = Math.round((100 + Math.cos(rad) * 30) * 100) / 100;
+        const y1 = Math.round((80 + Math.sin(rad) * 30) * 100) / 100;
+        const x2 = Math.round((100 + Math.cos(rad) * 50) * 100) / 100;
+        const y2 = Math.round((80 + Math.sin(rad) * 50) * 100) / 100;
         return (
           <circle key={i} r="2" fill="currentColor" className="text-primary">
             <animate attributeName="cx" values={`${x1};${x2}`} dur="2s" begin={`${i * 0.3}s`} repeatCount="indefinite" />

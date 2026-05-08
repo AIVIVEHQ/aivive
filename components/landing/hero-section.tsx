@@ -123,13 +123,17 @@ export function HeroSection() {
         {/* Main headline */}
         <div className="mb-4">
           <h1
-            className={`text-[clamp(2.5rem,10vw,7rem)] font-display leading-[0.95] tracking-tight transition-all duration-1000 ${
+            className={`text-[clamp(2.5rem,10vw,7rem)] font-display leading-[0.95] tracking-wider uppercase bg-clip-text text-transparent transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
+            style={{
+              backgroundImage: 'linear-gradient(135deg, #FFFFFF 0%, #A8FFEB 25%, #4FFFD8 50%, #FFA682 75%, #FF8A5C 100%)',
+              filter: 'drop-shadow(0 0 50px oklch(0.902 0.152 174.5 / 0.35))',
+            }}
           >
             <span className="block">The first</span>
             <span className="block">Recursive</span>
-            <span className="block text-primary">AI Protocol</span>
+            <span className="block">AI Protocol</span>
           </h1>
         </div>
 

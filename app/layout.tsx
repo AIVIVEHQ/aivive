@@ -1,29 +1,29 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
+import { Audiowide, DM_Sans, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const instrumentSans = Instrument_Sans({ 
-  subsets: ["latin"],
-  variable: '--font-instrument'
-});
-
-const instrumentSerif = Instrument_Serif({ 
+const audiowide = Audiowide({
   subsets: ["latin"],
   weight: "400",
-  variable: '--font-instrument-serif'
+  variable: '--font-audiowide'
 });
 
-const jetbrainsMono = JetBrains_Mono({ 
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: '--font-jetbrains'
+  variable: '--font-dm-sans'
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: '--font-space-mono'
 });
 
 export const metadata: Metadata = {
-  title: 'AIVIVE - The Crypto Execution Layer for Autonomous Agents',
-  description: 'AIVIVE gives AI agents verifiable identity, programmable permissions, and stablecoin-native settlement, so they can transact, coordinate, and operate onchain with trust.',
-  generator: 'v0.app',
+  title: 'AIVIVE - The First Recursive AI Protocol',
+  description: 'An AI image feed where every dollar of platform revenue automatically buys back and burns $AVV on Solana. Use the product. Make the asset rarer.',
 }
 
 export default function RootLayout({
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${audiowide.variable} ${spaceMono.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
