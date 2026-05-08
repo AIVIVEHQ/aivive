@@ -194,7 +194,7 @@ export function HeroSection() {
 
       {/* Trust strip */}
       <div
-        className={`absolute bottom-24 left-0 right-0 transition-all duration-700 delay-500 ${
+        className={`relative z-10 pb-16 transition-all duration-700 delay-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >

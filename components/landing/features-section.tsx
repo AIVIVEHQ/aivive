@@ -258,13 +258,13 @@ function SegmentCard({ segment, index }: { segment: typeof segments[0]; index: n
           {/* Content */}
           <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
             <div>
-              <p className={`text-sm mb-2 transition-colors duration-300`} style={{ color: `${accentColor})` }}>{segment.subtitle}</p>
-              <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-all duration-500">
-                <span className="group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500" style={{ backgroundImage: `linear-gradient(90deg, #FFFFFF, ${index === 2 ? '#FF8A5C' : '#4FFFD8'})` }}>
-                  {segment.title}
-                </span>
+              <p className={`text-sm mb-2 transition-colors duration-300 select-none`} style={{ color: `${accentColor})` }}>{segment.subtitle}</p>
+              <h3
+                className={`text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-all duration-500 select-none ${index === 2 ? 'group-hover:text-coral' : 'group-hover:text-primary'}`}
+              >
+                {segment.title}
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6 select-none">
                 {segment.description}
               </p>
               <ul className="space-y-2">
