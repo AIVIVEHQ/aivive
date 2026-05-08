@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 export function AnimatedTetrahedron() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef(0);
+  const dragRef = useRef({ isDragging: false, lastX: 0, lastY: 0, rotX: 0, rotY: 0, velX: 0, velY: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,6 +16,7 @@ export function AnimatedTetrahedron() {
 
     const chars = "░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯";
     let time = 0;
+    const drag = dragRef.current;
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -27,26 +29,52 @@ export function AnimatedTetrahedron() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Tetrahedron vertices
+    // Drag handlers
+    const onPointerDown = (e: PointerEvent) => {
+      drag.isDragging = true;
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+      drag.velX = 0;
+      drag.velY = 0;
+      canvas.setPointerCapture(e.pointerId);
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!drag.isDragging) return;
+      const dx = e.clientX - drag.lastX;
+      const dy = e.clientY - drag.lastY;
+      drag.velX = dx * 0.005;
+      drag.velY = dy * 0.005;
+      drag.rotY += dx * 0.005;
+      drag.rotX += dy * 0.005;
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+    };
+    const onPointerUp = () => {
+      drag.isDragging = false;
+    };
+
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointerleave", onPointerUp);
+
     const vertices = [
-      { x: 0, y: 1, z: 0 },           // Top
-      { x: -0.943, y: -0.333, z: -0.5 }, // Bottom left back
-      { x: 0.943, y: -0.333, z: -0.5 },  // Bottom right back
-      { x: 0, y: -0.333, z: 1 },         // Bottom front
+      { x: 0, y: 1, z: 0 },
+      { x: -0.943, y: -0.333, z: -0.5 },
+      { x: 0.943, y: -0.333, z: -0.5 },
+      { x: 0, y: -0.333, z: 1 },
     ];
 
-    // Edges connecting vertices
     const edges = [
-      [0, 1], [0, 2], [0, 3], // Top to bottom vertices
-      [1, 2], [2, 3], [3, 1], // Bottom triangle
+      [0, 1], [0, 2], [0, 3],
+      [1, 2], [2, 3], [3, 1],
     ];
 
-    // Faces for filling with points
     const faces = [
-      [0, 1, 2], // Back face
-      [0, 2, 3], // Right face
-      [0, 3, 1], // Left face
-      [1, 3, 2], // Bottom face
+      [0, 1, 2],
+      [0, 2, 3],
+      [0, 3, 1],
+      [1, 3, 2],
     ];
 
     const rotateY = (point: { x: number; y: number; z: number }, angle: number) => ({
@@ -79,9 +107,16 @@ export function AnimatedTetrahedron() {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
+      // Apply inertia when not dragging
+      if (!drag.isDragging) {
+        drag.velX *= 0.95;
+        drag.velY *= 0.95;
+        drag.rotY += drag.velX;
+        drag.rotX += drag.velY;
+      }
+
       const points: { x: number; y: number; z: number; char: string }[] = [];
 
-      // Generate points along edges
       edges.forEach(([i, j]) => {
         const v1 = vertices[i];
         const v2 = vertices[j];
@@ -93,9 +128,8 @@ export function AnimatedTetrahedron() {
             z: v1.z + (v2.z - v1.z) * t,
           };
 
-          // Apply rotations
-          point = rotateY(point, time * 0.4);
-          point = rotateX(point, time * 0.3);
+          point = rotateY(point, time * 0.4 + drag.rotY);
+          point = rotateX(point, time * 0.3 + drag.rotX);
           point = rotateZ(point, time * 0.2);
 
           const depth = (point.z + 1.5) / 3;
@@ -110,7 +144,6 @@ export function AnimatedTetrahedron() {
         }
       });
 
-      // Generate points on faces for a filled look
       faces.forEach(([i, j, k]) => {
         const v1 = vertices[i];
         const v2 = vertices[j];
@@ -125,9 +158,8 @@ export function AnimatedTetrahedron() {
               z: v1.z * u + v2.z * v + v3.z * w,
             };
 
-            // Apply rotations
-            point = rotateY(point, time * 0.4);
-            point = rotateX(point, time * 0.3);
+            point = rotateY(point, time * 0.4 + drag.rotY);
+            point = rotateX(point, time * 0.3 + drag.rotX);
             point = rotateZ(point, time * 0.2);
 
             const depth = (point.z + 1.5) / 3;
@@ -143,13 +175,10 @@ export function AnimatedTetrahedron() {
         }
       });
 
-      // Sort by z for depth
       points.sort((a, b) => a.z - b.z);
 
-      // Draw points with aqua color (AIVIVE primary)
       points.forEach((point) => {
         const alpha = 0.2 + (point.z + 1.5) * 0.35;
-        // Aqua color: rgb(79, 255, 216) = #4FFFD8
         ctx.fillStyle = `rgba(79, 255, 216, ${Math.min(alpha, 0.95)})`;
         ctx.fillText(point.char, point.x, point.y);
       });
@@ -162,6 +191,10 @@ export function AnimatedTetrahedron() {
 
     return () => {
       window.removeEventListener("resize", resize);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointerleave", onPointerUp);
       cancelAnimationFrame(frameRef.current);
     };
   }, []);
@@ -169,8 +202,8 @@ export function AnimatedTetrahedron() {
   return (
     <canvas
       ref={canvasRef}
-      className="w-full h-full"
-      style={{ display: "block" }}
+      className="w-full h-full cursor-grab active:cursor-grabbing"
+      style={{ display: "block", touchAction: "none" }}
     />
   );
 }

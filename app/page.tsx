@@ -2,6 +2,7 @@ import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
 import { InfrastructureSection } from "@/components/landing/infrastructure-section";
 import { FeaturesSection } from "@/components/landing/features-section";
+import { BurnCalculator } from "@/components/landing/burn-calculator";
 import { HowItWorksSection } from "@/components/landing/how-it-works-section";
 import { DevelopersSection } from "@/components/landing/developers-section";
 import { PricingSection } from "@/components/landing/pricing-section";
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
       <InfrastructureSection />
       <FeaturesSection />
+      <BurnCalculator />
       <HowItWorksSection />
       <DevelopersSection />
       <PricingSection />
