@@ -176,7 +176,7 @@ function SegmentCard({ segment, index }: { segment: typeof segments[0]; index: n
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 py-12 lg:py-20 border-b border-primary/10">
+      <div className={`flex flex-col lg:flex-row gap-8 lg:gap-16 py-12 lg:py-20 border-b ${index === 2 ? 'border-coral/20' : 'border-primary/10'}`}>
         {/* Number */}
         <div className="shrink-0">
           <span className="font-mono text-sm text-primary">{segment.number}</span>
@@ -234,9 +234,24 @@ export function FeaturesSection() {
     <section
       id="protocol"
       ref={sectionRef}
-      className="relative py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      {/* Warm ambient glow */}
+      <div
+        className="absolute top-1/3 -right-20 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 -left-20 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.05), transparent 70%)',
+          filter: 'blur(70px)',
+        }}
+      />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="mb-16 lg:mb-24">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-primary mb-6">
@@ -250,7 +265,7 @@ export function FeaturesSection() {
           >
             Three segments.
             <br />
-            <span className="text-muted-foreground">One deflationary cycle.</span>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.753 0.155 41.6))' }}>One deflationary cycle.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
             Every dollar spent on AI image generation flows through a verifiable on-chain cycle that permanently reduces $AVV supply. More usage, more burns, more scarcity.

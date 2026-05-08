@@ -70,7 +70,22 @@ export function IntegrationsSection() {
 
   return (
     <section id="ecosystem" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      {/* Warm ambient */}
+      <div
+        className="absolute top-0 left-1/3 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.06), transparent 70%)',
+          filter: 'blur(90px)',
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 right-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.05), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div
           className={`max-w-3xl mb-16 lg:mb-24 transition-all duration-700 ${
@@ -84,7 +99,7 @@ export function IntegrationsSection() {
           <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
             Powered by
             <br />
-            <span className="text-muted-foreground">battle-tested infrastructure</span>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.870 0.130 85))' }}>battle-tested infrastructure</span>
           </h2>
           <p className="text-xl text-muted-foreground">
             No new chain, no custom bridge. Aivive builds on top of Solana, Base, Circle CCTP, Jupiter, and the best AI model providers — inheriting security and liquidity from day one.

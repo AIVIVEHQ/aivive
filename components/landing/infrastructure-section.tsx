@@ -35,12 +35,20 @@ export function InfrastructureSection() {
 
   return (
     <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden border-t border-primary/10 grain-overlay">
-      {/* Subtle coral halo */}
+      {/* Coral halo - right */}
       <div
-        className="absolute top-1/2 right-0 w-[300px] h-[300px] pointer-events-none"
+        className="absolute top-1/4 right-0 w-[400px] h-[400px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.04), transparent 70%)',
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.08), transparent 70%)',
           filter: 'blur(80px)',
+        }}
+      />
+      {/* Amber halo - bottom left */}
+      <div
+        className="absolute bottom-0 left-1/4 w-[300px] h-[300px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.05), transparent 70%)',
+          filter: 'blur(70px)',
         }}
       />
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -65,8 +73,8 @@ export function InfrastructureSection() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
               The AI image generation market is projected to reach $50B by 2027. But the entire surplus flows to centralized subscription platforms. Zero value accrues to the creative users producing the work, or the open networks underwriting it.
             </p>
-            <p className="text-lg text-foreground/90 leading-relaxed border-l-2 border-primary/30 pl-6">
-              Aivive introduces a fourth pattern: a programmable share of platform revenue is automatically routed into permanent on-chain destruction of $AVV.
+            <p className="text-lg text-foreground/90 leading-relaxed border-l-2 pl-6" style={{ borderColor: '#FF8A5C' }}>
+              Aivive introduces a <span style={{ color: '#FFA682' }}>fourth pattern</span>: a programmable share of platform revenue is automatically routed into permanent on-chain destruction of $AVV.
             </p>
           </div>
 

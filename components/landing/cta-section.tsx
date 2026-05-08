@@ -51,12 +51,20 @@ export function CtaSection() {
               }}
             />
 
-            {/* Fixed coral halo bottom-right */}
+            {/* Coral halo bottom-right (stronger) */}
             <div
-              className="absolute -bottom-16 -right-16 w-[250px] h-[250px] pointer-events-none"
+              className="absolute -bottom-16 -right-16 w-[400px] h-[400px] pointer-events-none"
               style={{
-                background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
-                filter: 'blur(40px)',
+                background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.12), oklch(0.870 0.130 85 / 0.04) 60%, transparent 80%)',
+                filter: 'blur(50px)',
+              }}
+            />
+            {/* Amber halo top-left */}
+            <div
+              className="absolute -top-16 -left-16 w-[300px] h-[300px] pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.08), transparent 70%)',
+                filter: 'blur(50px)',
               }}
             />
 
@@ -69,7 +77,13 @@ export function CtaSection() {
                     SUMMER 2026
                   </span>
 
-                  <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
+                  <h2
+                    className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95] bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: 'linear-gradient(135deg, #FFFFFF 0%, #FFA682 50%, #FF8A5C 100%)',
+                      filter: 'drop-shadow(0 0 40px oklch(0.753 0.155 41.6 / 0.3))',
+                    }}
+                  >
                     Join the creative
                     <br />
                     economy

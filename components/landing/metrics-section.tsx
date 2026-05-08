@@ -87,8 +87,23 @@ export function MetricsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 lg:py-32 border-y border-foreground/10">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <section ref={sectionRef} className="relative py-24 lg:py-32 border-y border-foreground/10 overflow-hidden">
+      {/* Warm ambient */}
+      <div
+        className="absolute top-1/2 right-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div
+        className="absolute top-0 left-1/4 w-[350px] h-[350px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.05), transparent 70%)',
+          filter: 'blur(70px)',
+        }}
+      />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-24">
           <div>
@@ -101,7 +116,7 @@ export function MetricsSection() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              The numbers
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, #FFFFFF 30%, #FFA682 100%)' }}>The numbers</span>
               <br />
               behind the loop.
             </h2>

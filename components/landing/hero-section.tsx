@@ -37,21 +37,30 @@ export function HeroSection() {
         }}
       />
 
-      {/* Gradient halo - coral bottom-right */}
+      {/* Gradient halo - coral bottom-right (stronger) */}
       <div
-        className="absolute -bottom-20 -right-20 w-[300px] h-[300px] pointer-events-none"
+        className="absolute -bottom-20 -right-20 w-[500px] h-[500px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.12), oklch(0.805 0.117 42.7 / 0.04) 50%, transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+
+      {/* Amber warm light - center right (stronger) */}
+      <div
+        className="absolute top-1/3 right-1/4 w-[350px] h-[350px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.08), transparent 70%)',
           filter: 'blur(60px)',
         }}
       />
 
-      {/* Subtle amber warm light - center right */}
+      {/* Coral warm wash - left center */}
       <div
-        className="absolute top-1/3 right-1/4 w-[200px] h-[200px] pointer-events-none"
+        className="absolute top-2/3 -left-16 w-[300px] h-[300px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.04), transparent 70%)',
-          filter: 'blur(60px)',
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.06), transparent 70%)',
+          filter: 'blur(70px)',
         }}
       />
 
@@ -190,7 +199,15 @@ export function HeroSection() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <p className="text-sm font-mono text-muted-foreground mb-6">AI that gives. Alive. Warm. Sharp.</p>
+          <p className="text-sm font-mono mb-6">
+            <span className="text-muted-foreground">AI that gives. </span>
+            <span style={{ color: '#FFA682' }}>Alive</span>
+            <span className="text-muted-foreground">. </span>
+            <span style={{ color: '#FF8A5C' }}>Warm</span>
+            <span className="text-muted-foreground">. </span>
+            <span className="text-primary">Sharp</span>
+            <span className="text-muted-foreground">.</span>
+          </p>
           <div className="flex flex-wrap gap-4">
             {trustItems.map((item) => (
               <span

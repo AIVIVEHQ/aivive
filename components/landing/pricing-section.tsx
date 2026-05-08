@@ -96,8 +96,23 @@ export function PricingSection() {
   }, []);
 
   return (
-    <section id="tokenomics" ref={sectionRef} className="relative py-32 lg:py-40 border-t border-primary/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="tokenomics" ref={sectionRef} className="relative py-32 lg:py-40 border-t border-primary/10 overflow-hidden">
+      {/* Warm ambient halos */}
+      <div
+        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.08), transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.06), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="max-w-3xl mb-20">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-primary mb-6">
@@ -111,7 +126,7 @@ export function PricingSection() {
           >
             Token economics
             <br />
-            <span className="text-muted-foreground">designed for deflation</span>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.753 0.155 41.6))' }}>designed for deflation</span>
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed">
             $AVV is not a payment token, not a staking token, and not a governance token at launch. It is the deflationary anchor — its sole utility is permanent destruction proportional to platform revenue.

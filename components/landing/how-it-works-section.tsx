@@ -103,12 +103,19 @@ export function HowItWorksSection() {
       ref={sectionRef}
       className="relative py-24 lg:py-32 overflow-hidden"
     >
-      {/* Subtle warm halo */}
+      {/* Warm halos */}
       <div
-        className="absolute top-0 right-0 w-[400px] h-[400px] pointer-events-none"
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.03), transparent 70%)',
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.07), transparent 70%)',
           filter: 'blur(80px)',
+        }}
+      />
+      <div
+        className="absolute bottom-1/3 left-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.06), transparent 70%)',
+          filter: 'blur(70px)',
         }}
       />
 
@@ -126,7 +133,7 @@ export function HowItWorksSection() {
           >
             A taste-first
             <br />
-            <span className="text-muted-foreground">AI creative platform</span>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.805 0.117 42.7))' }}>AI creative platform</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
             Civitai meets Pinterest. The model layer is solved — FLUX, gpt-image, Imagen all produce any image you can describe. The right shape for AI image generation is a feed.

@@ -118,7 +118,22 @@ export function DevelopersSection() {
   return (
     <section id="developers" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: codeAnimationStyles }} />
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      {/* Warm ambient */}
+      <div
+        className="absolute top-1/4 -right-20 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.870 0.130 85 / 0.06), transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-1/3 w-[350px] h-[350px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, oklch(0.753 0.155 41.6 / 0.05), transparent 70%)',
+          filter: 'blur(70px)',
+        }}
+      />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Content */}
           <div
@@ -133,7 +148,7 @@ export function DevelopersSection() {
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
               Built with the best
               <br />
-              <span className="text-muted-foreground">of crypto and AI</span>
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.870 0.130 85))' }}>of crypto and AI</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
               No new L1. No custom bridge. Aivive operates on top of Solana and Base, inheriting the security and infrastructure of two battle-tested ecosystems.
