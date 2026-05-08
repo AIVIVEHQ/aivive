@@ -398,6 +398,16 @@
     mix-blend-mode: overlay;
   }
 
+  /* Spinning border for protocol cards */
+  @property --border-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+  @keyframes spin-border {
+    to { --border-angle: 360deg; }
+  }
+
   /* Status dot warm (coral) */
   .status-dot-warm {
     width: 6px;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const segments = [
   {
@@ -155,6 +155,7 @@ function AnimatedVisual({ type }: { type: string }) {
 function SegmentCard({ segment, index }: { segment: typeof segments[0]; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -168,6 +169,29 @@ function SegmentCard({ segment, index }: { segment: typeof segments[0]; index: n
     return () => observer.disconnect();
   }, []);
 
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = innerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    // Spotlight position
+    el.style.setProperty('--mouse-x', `${x * 100}%`);
+    el.style.setProperty('--mouse-y', `${y * 100}%`);
+    // 3D tilt
+    const tiltX = (y - 0.5) * -8;
+    const tiltY = (x - 0.5) * 8;
+    el.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+  }, []);
+
+  const accentColor = index === 2 ? 'oklch(0.753 0.155 41.6' : 'oklch(0.902 0.152 174.5';
+
   return (
     <div
       ref={cardRef}
@@ -176,36 +200,92 @@ function SegmentCard({ segment, index }: { segment: typeof segments[0]; index: n
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className={`flex flex-col lg:flex-row gap-8 lg:gap-16 py-12 lg:py-20 border-b ${index === 2 ? 'border-coral/20' : 'border-primary/10'}`}>
-        {/* Number */}
-        <div className="shrink-0">
-          <span className="font-mono text-sm text-primary">{segment.number}</span>
-        </div>
+      <div
+        ref={innerRef}
+        className="relative rounded-xl p-8 lg:p-10 mb-4 overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          background: 'linear-gradient(135deg, oklch(0.241 0.015 174.7 / 0.6), oklch(0.199 0.015 172.2 / 0.4))',
+          backdropFilter: 'blur(12px)',
+          border: `1px solid ${accentColor} / 0.1)`,
+          willChange: 'transform',
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Animated gradient border on hover */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[inherit]"
+          style={{
+            padding: '1px',
+            background: `conic-gradient(from var(--border-angle, 0deg), ${accentColor} / 0.4), transparent 25%, ${accentColor} / 0.15) 50%, transparent 75%, ${accentColor} / 0.4))`,
+            mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+            maskComposite: 'exclude',
+            animation: 'spin-border 3s linear infinite',
+          }}
+        />
 
-        {/* Content */}
-        <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
-          <div>
-            <p className="text-sm text-primary mb-2">{segment.subtitle}</p>
-            <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-transform duration-500">
-              {segment.title}
-            </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              {segment.description}
-            </p>
-            <ul className="space-y-2">
-              {segment.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-sm text-foreground/80">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        {/* Mouse-tracking spotlight */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-[inherit]"
+          style={{
+            background: `radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${accentColor} / 0.12), transparent 50%)`,
+          }}
+        />
+
+        {/* Ambient glow behind card on hover */}
+        <div
+          className="absolute -inset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10 rounded-2xl"
+          style={{
+            background: `radial-gradient(circle at 50% 50%, ${accentColor} / 0.08), transparent 70%)`,
+            filter: 'blur(30px)',
+          }}
+        />
+
+        <div className="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16">
+          {/* Number — large, glowing on hover */}
+          <div className="shrink-0">
+            <span
+              className="font-display text-4xl lg:text-5xl transition-all duration-500 group-hover:scale-110 inline-block"
+              style={{
+                color: `${accentColor} / 0.15)`,
+                textShadow: 'none',
+              }}
+            >
+              {segment.number}
+            </span>
           </div>
 
-          {/* Visual */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-48 h-40 text-primary">
-              <AnimatedVisual type={segment.visual} />
+          {/* Content */}
+          <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
+            <div>
+              <p className={`text-sm mb-2 transition-colors duration-300`} style={{ color: `${accentColor})` }}>{segment.subtitle}</p>
+              <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-all duration-500">
+                <span className="group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500" style={{ backgroundImage: `linear-gradient(90deg, #FFFFFF, ${index === 2 ? '#FF8A5C' : '#4FFFD8'})` }}>
+                  {segment.title}
+                </span>
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                {segment.description}
+              </p>
+              <ul className="space-y-2">
+                {segment.features.map((feature, fi) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 text-sm text-foreground/80 transition-all duration-300 group-hover:translate-x-1"
+                    style={{ transitionDelay: `${fi * 50}ms` }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 group-hover:scale-150 transition-transform duration-300" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Visual — scales up on hover */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-48 h-40 text-primary transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_oklch(0.902_0.152_174.5/0.3)]">
+                <AnimatedVisual type={segment.visual} />
+              </div>
             </div>
           </div>
         </div>
