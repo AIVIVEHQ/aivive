@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Logo } from "./logo";
 
 const navLinks = [
   { name: "Protocol", href: "#protocol" },
@@ -45,8 +46,8 @@ export function Navigation() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <span className={`font-display tracking-tight transition-all duration-500 text-primary ${isScrolled ? "text-xl" : "text-2xl"}`}>AIVIVE</span>
+          <a href="#" className="flex items-center gap-2">
+            <Logo size={isScrolled ? "sm" : "default"} />
           </a>
 
           {/* Desktop Navigation */}
