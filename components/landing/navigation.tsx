@@ -66,14 +66,11 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
-              Whitepaper
-            </a>
             <Button
               size="sm"
               className={`bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all duration-500 hover:shadow-[0_0_20px_oklch(0.902_0.152_174.5/0.3)] ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
-              Join Waitlist
+              Open App
             </Button>
           </div>
 
@@ -131,17 +128,10 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button
-              variant="outline"
-              className="flex-1 rounded-full h-14 text-base border-primary/20"
+              className="w-full bg-primary text-primary-foreground rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Whitepaper
-            </Button>
-            <Button
-              className="flex-1 bg-primary text-primary-foreground rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Join Waitlist
+              Open App
             </Button>
           </div>
         </div>
