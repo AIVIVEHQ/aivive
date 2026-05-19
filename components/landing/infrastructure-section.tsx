@@ -74,7 +74,7 @@ export function InfrastructureSection() {
               The AI image generation market is projected to reach $50B by 2027. But the entire surplus flows to centralized subscription platforms. Zero value accrues to the creative users producing the work, or the open networks underwriting it.
             </p>
             <p className="text-lg text-foreground/90 leading-relaxed border-l-2 pl-6" style={{ borderColor: '#FF8A5C' }}>
-              Aivive introduces a <span style={{ color: '#FFA682' }}>fourth pattern</span>: a programmable share of platform revenue is automatically routed into permanent on-chain destruction of $AVV.
+              Aivive introduces a <span style={{ color: '#FFA682' }}>fourth pattern</span>: a programmable share of platform revenue is automatically routed into permanent on-chain deflation of the underlying network.
             </p>
           </div>
 

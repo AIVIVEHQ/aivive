@@ -90,7 +90,7 @@ export function CtaSection() {
                   </h2>
 
                   <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                    The AI feed that pays for itself. Create, discover, remix — and every image you generate makes $AVV rarer. Launching summer 2026.
+                    The AI feed that pays for itself. Create, discover, remix — and every image you generate strengthens the loop. Launching summer 2026.
                   </p>
 
                   <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -104,6 +104,7 @@ export function CtaSection() {
                     <Button
                       size="lg"
                       variant="outline"
+                      onClick={() => window.open('mailto:contact@aivive.ai', '_self')}
                       className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/40"
                     >
                       Contact Us

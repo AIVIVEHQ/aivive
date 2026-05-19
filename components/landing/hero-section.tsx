@@ -9,8 +9,7 @@ const trustItems = [
   "Solana native",
   "USDC payments",
   "Weekly burn cycle",
-  "CertiK audited",
-  "55% to community",
+  "Community-first",
 ];
 
 const statusItems = [
@@ -164,7 +163,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            An AI image feed where every dollar of platform revenue automatically buys back and burns $AVV on Solana. Use the product. Make the asset rarer.
+            An AI image feed where a programmable share of platform revenue automatically deflates the underlying network. Use the product. The asset becomes rarer.
           </p>
 
           {/* CTAs */}
@@ -183,6 +182,7 @@ export function HeroSection() {
             <Button
               size="lg"
               variant="outline"
+              onClick={() => window.open('https://aivive.gitbook.io', '_blank', 'noopener,noreferrer')}
               className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-shadow hover:shadow-[0_0_20px_oklch(0.753_0.155_41.6/0.08)]"
             >
               Read Whitepaper

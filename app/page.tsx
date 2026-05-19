@@ -4,10 +4,8 @@ import { HeroSection } from '@/components/landing/hero-section'
 import { InfrastructureSection } from '@/components/landing/infrastructure-section'
 import { FeaturesSection } from '@/components/landing/features-section'
 import { LoopVisual } from '@/components/landing/loop-visual'
-import { BurnCalculator } from '@/components/landing/burn-calculator'
 import { HowItWorksSection } from '@/components/landing/how-it-works-section'
 import { DevelopersSection } from '@/components/landing/developers-section'
-import { PricingSection } from '@/components/landing/pricing-section'
 import { IntegrationsSection } from '@/components/landing/integrations-section'
 import { CtaSection } from '@/components/landing/cta-section'
 import { FooterSection } from '@/components/landing/footer-section'
@@ -21,10 +19,8 @@ export default function Home() {
       <InfrastructureSection />
       <FeaturesSection />
       <LoopVisual />
-      <BurnCalculator />
       <HowItWorksSection />
       <DevelopersSection />
-      <PricingSection />
       <IntegrationsSection />
       <CtaSection />
       <FooterSection />

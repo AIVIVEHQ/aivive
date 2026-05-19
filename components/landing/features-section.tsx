@@ -7,9 +7,9 @@ const segments = [
     number: "01",
     title: "User Payment",
     subtitle: "USDC on Base mainnet",
-    description: "Users purchase generation credits on aivive.ai using USDC on Base. Privy embedded wallets handle signing seamlessly. Every payment is verifiable on BaseScan.",
+    description: "Users purchase generation credits on aivive.ai using USDC on Base. Privy embedded wallets handle signing seamlessly. Every payment is publicly verifiable on-chain.",
     features: [
-      "Three tiers: Standard ($0.003), HD ($0.025), Ultra ($0.04+)",
+      "Three tiers: Standard, HD, Ultra",
       "Pay with USDC — no volatile gas token",
       "Privy dual-chain embedded wallet",
       "Instant credit ledger (double-entry, append-only)",
@@ -20,27 +20,27 @@ const segments = [
   {
     number: "02",
     title: "Cross-Chain Bridge",
-    subtitle: "Circle CCTP burn-and-mint",
-    description: "When the Base treasury reaches threshold, a Safe multisig (2-of-3) triggers Circle CCTP. USDC is destroyed on Base and minted on Solana in ~15 minutes. No custodial bridge — just native burn-mint primitives.",
+    subtitle: "Cross-chain settlement",
+    description: "When the Base treasury reaches threshold, a multisig-governed treasury triggers cross-chain settlement. USDC moves from Base to Solana in ~15 minutes. No custodial bridge — just native settlement primitives.",
     features: [
-      "Safe (Gnosis Safe) 2-of-3 multisig on Base",
-      "Circle CCTP — no third-party bridge risk",
-      "~15 min settlement via Circle attestation",
+      "Multisig-governed treasury on Base",
+      "Native settlement — no third-party bridge risk",
+      "~15 min settlement window",
       "Weekly automated cycle",
-      "Fully auditable cross-chain flow",
+      "Fully verifiable cross-chain flow",
     ],
     visual: "bridge",
   },
   {
     number: "03",
     title: "Buyback & Burn",
-    subtitle: "Permanent on-chain destruction of $AVV",
-    description: "USDC arrives on Solana. Squads multisig (2-of-3) executes a Jupiter swap USDC to AVV, then immediately burns the acquired tokens via SPL Token Burn. Supply shrinks permanently.",
+    subtitle: "Permanent on-chain destruction of the network asset",
+    description: "USDC arrives on Solana. The treasury executes a swap into the network's asset, then immediately burns the acquired tokens via on-chain token burn. Supply shrinks permanently.",
     features: [
-      "Squads 2-of-3 multisig on Solana",
-      "Jupiter aggregator for best swap execution",
-      "SPL Token Burn — irreversible destruction",
-      "Verifiable on Solscan + Dune Analytics",
+      "Multisig-controlled treasury on Solana",
+      "Aggregator-routed best execution",
+      "On-chain token burn — irreversible destruction",
+      "Verifiable on-chain at every step",
       "Public dashboard at aivive.ai/burn",
     ],
     visual: "burn",
@@ -115,7 +115,7 @@ function BurnVisual() {
       <circle cx="100" cy="80" r="25" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
         <animate attributeName="r" values="25;18;25" dur="3s" repeatCount="indefinite" />
       </circle>
-      <text x="100" y="85" textAnchor="middle" fill="currentColor" className="text-primary" fontSize="12" fontWeight="bold">AVV</text>
+      <text x="100" y="85" textAnchor="middle" fill="currentColor" className="text-primary" fontSize="11" fontWeight="bold">TOKEN</text>
 
       {/* Burn particles flying outward */}
       {[0, 60, 120, 180, 240, 300].map((angle, i) => {
@@ -348,7 +348,7 @@ export function FeaturesSection() {
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.753 0.155 41.6))' }}>One deflationary cycle.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
-            Every dollar spent on AI image generation flows through a verifiable on-chain cycle that permanently reduces $AVV supply. More usage, more burns, more scarcity.
+            A programmable share of revenue flows through a verifiable on-chain cycle that permanently shrinks token supply. More usage, more burns, more scarcity.
           </p>
         </div>
 

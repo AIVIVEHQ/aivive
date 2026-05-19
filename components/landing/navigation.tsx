@@ -3,15 +3,22 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { toast } from "sonner";
 import { Logo } from "./logo";
 
 const navLinks = [
   { name: "Protocol", href: "#protocol" },
   { name: "Product", href: "#product" },
-  { name: "Token", href: "#tokenomics" },
   { name: "Ecosystem", href: "#ecosystem" },
   { name: "Docs", href: "#developers" },
 ];
+
+function handleOpenApp() {
+  toast("Coming Soon", {
+    description: "AIVIVE app launching summer 2026. Join the waitlist below.",
+    duration: 3500,
+  });
+}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,6 +75,7 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-4">
             <Button
               size="sm"
+              onClick={handleOpenApp}
               className={`bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all duration-500 hover:shadow-[0_0_20px_oklch(0.902_0.152_174.5/0.3)] ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
               Open App
@@ -129,7 +137,10 @@ export function Navigation() {
           >
             <Button
               className="w-full bg-primary text-primary-foreground rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                handleOpenApp();
+              }}
             >
               Open App
             </Button>

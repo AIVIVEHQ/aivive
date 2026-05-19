@@ -8,37 +8,23 @@ const footerLinks = {
   Product: [
     { name: "Feed", href: "#product" },
     { name: "Studio", href: "#product" },
-    { name: "Burn Dashboard", href: "#protocol" },
-    { name: "Whitepaper", href: "#" },
-    { name: "App", href: "#" },
+    { name: "Loop Dashboard", href: "#protocol" },
+    { name: "Whitepaper", href: "https://aivive.gitbook.io" },
   ],
-  Resources: [
-    { name: "GitBook", href: "#" },
-    { name: "GitHub", href: "#" },
-    { name: "Dune Analytics", href: "#" },
-    { name: "BaseScan", href: "#" },
-    { name: "Solscan", href: "#" },
-  ],
-  Company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#", badge: "Hiring" },
-    { name: "Brand Kit", href: "#" },
+  Connect: [
     { name: "Contact", href: "mailto:contact@aivive.ai" },
+    { name: "Link3", href: "https://link3.to/aivive" },
   ],
   Community: [
     { name: "X", href: "https://x.com/AIVIVEHQ" },
     { name: "Telegram", href: "https://t.me/AIVIVEHQ" },
-    { name: "Discord", href: "#" },
-    { name: "Medium", href: "#" },
+    { name: "Discord", href: "https://discord.gg/aivive" },
+    { name: "Medium", href: "https://medium.com/@aivive" },
+    { name: "YouTube", href: "https://www.youtube.com/@AIVIVEHQ" },
   ],
 };
 
-const legalLinks = [
-  { name: "Terms of Service", href: "#" },
-  { name: "Privacy Policy", href: "#" },
-  { name: "License Agreement", href: "#" },
-];
+const isExternal = (href: string) => href.startsWith("http");
 
 export function FooterSection() {
   return (
@@ -66,11 +52,13 @@ export function FooterSection() {
               </p>
 
               {/* Social Links */}
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {footerLinks.Community.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
+                    target={isExternal(link.href) ? "_blank" : undefined}
+                    rel={isExternal(link.href) ? "noopener noreferrer" : undefined}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group"
                   >
                     {link.name}
@@ -89,14 +77,11 @@ export function FooterSection() {
                     <li key={link.name}>
                       <a
                         href={link.href}
+                        target={isExternal(link.href) ? "_blank" : undefined}
+                        rel={isExternal(link.href) ? "noopener noreferrer" : undefined}
                         className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
                       >
                         {link.name}
-                        {"badge" in link && link.badge && (
-                          <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'oklch(0.753 0.155 41.6 / 0.15)', color: 'oklch(0.877 0.072 47.9)', border: '1px solid oklch(0.753 0.155 41.6 / 0.2)' }}>
-                            {link.badge}
-                          </span>
-                        )}
                       </a>
                     </li>
                   ))}
@@ -109,16 +94,8 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-primary/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            2026 AIVIVE. All rights reserved.
+            © 2026 AIVIVE. All rights reserved.
           </p>
-
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            {legalLinks.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-primary transition-colors">
-                {link.name}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

@@ -4,11 +4,11 @@ import { useEffect, useState, useRef, useCallback } from "react";
 
 const ecosystemCategories = [
   { name: "AI Models", examples: "FLUX.1, gpt-image-2, Imagen 4 Ultra" },
-  { name: "Wallets", examples: "Privy, Safe (Base), Squads (Solana)" },
-  { name: "Stablecoins", examples: "USDC via Circle CCTP" },
+  { name: "Wallets", examples: "Privy embedded wallets, institutional-grade multisig" },
+  { name: "Stablecoins", examples: "USDC with native cross-chain settlement" },
   { name: "Payments", examples: "Base mainnet, USDC native" },
-  { name: "Analytics", examples: "Dune Analytics, Solscan, BaseScan" },
-  { name: "DeFi", examples: "Jupiter, Raydium" },
+  { name: "Analytics", examples: "Public on-chain dashboards & block explorers" },
+  { name: "DeFi", examples: "DEX aggregation on Solana" },
   { name: "AI Providers", examples: "fal.ai, OpenAI, Replicate", warm: true },
   { name: "Infrastructure", examples: "Vercel, Supabase, Cloudflare R2" },
 ];
@@ -102,7 +102,7 @@ export function IntegrationsSection() {
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, oklch(0.513 0.015 179), oklch(0.870 0.130 85))' }}>battle-tested infrastructure</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            No new chain, no custom bridge. Aivive builds on top of Solana, Base, Circle CCTP, Jupiter, and the best AI model providers — inheriting security and liquidity from day one.
+            No new chain, no custom bridge. Aivive builds on top of Solana, Base, native cross-chain settlement, optimized execution routing, and the best AI model providers — inheriting security and liquidity from day one.
           </p>
         </div>
 

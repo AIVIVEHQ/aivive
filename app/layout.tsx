@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Audiowide, DM_Sans, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const audiowide = Audiowide({
@@ -23,7 +24,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: 'AIVIVE - The First Recursive AI Protocol',
-  description: 'An AI image feed where every dollar of platform revenue automatically buys back and burns $AVV on Solana. Use the product. Make the asset rarer.',
+  description: 'An AI image feed where a programmable share of platform revenue automatically deflates the underlying network. Use the product. The asset becomes rarer.',
 }
 
 export default function RootLayout({
@@ -32,9 +33,21 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-background">
+    <html lang="en" className="bg-background" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${audiowide.variable} ${spaceMono.variable} font-sans antialiased`}>
         {children}
+        <Toaster
+          theme="dark"
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: 'oklch(0.199 0.015 172.2 / 0.95)',
+              border: '1px solid oklch(0.902 0.152 174.5 / 0.2)',
+              color: 'oklch(0.95 0.02 174.5)',
+              backdropFilter: 'blur(12px)',
+            },
+          }}
+        />
         <Analytics />
       </body>
     </html>

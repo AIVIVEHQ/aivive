@@ -32,7 +32,7 @@ const productFeatures = [
   {
     number: "06",
     title: "Burn Dashboard",
-    description: "Real-time metrics: cumulative tokens burned, weekly USDC inflow, burn velocity. Verifiable on Solscan and Dune Analytics.",
+    description: "Real-time metrics: cumulative tokens burned, weekly USDC inflow, burn velocity. Publicly verifiable on-chain.",
     warm: true,
   },
 ];

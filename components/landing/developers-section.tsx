@@ -24,23 +24,10 @@ Google    → Imagen 4 Ultra`,
 Privy embedded wallet (EVM + Solana)
 USDC on Base → Credit Ledger
 
-# Cross-Chain (Circle CCTP)
-Safe 2-of-3 multisig → CCTP burn
-USDC destroyed on Base
-USDC minted on Solana (~15 min)`,
-  },
-  {
-    label: "Token",
-    code: `# $AVV on Solana
-SPL Token — 10B total supply
-Squads 2-of-3 multisig authority
-CertiK audited
-
-# Weekly Burn Cycle
-Jupiter swap: USDC → AVV
-SPL Token Burn: permanent destruction
-Dashboard: aivive.ai/burn
-Dune: dune.com/aivive`,
+# Cross-Chain Settlement
+Multisig-controlled treasury
+USDC settled across chains
+Public dashboard, verifiable on-chain`,
   },
 ];
 
@@ -55,11 +42,11 @@ const features = [
   },
   {
     title: "Jupiter aggregation",
-    description: "Best execution for USDC-to-AVV swaps."
+    description: "Best execution for USDC-to-token swaps."
   },
   {
     title: "On-chain verification",
-    description: "Every flow auditable on BaseScan + Solscan."
+    description: "Every flow publicly verifiable on BaseScan + Solscan."
   },
 ];
 
@@ -174,17 +161,11 @@ export function DevelopersSection() {
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Button
                 size="lg"
+                onClick={() => window.open('https://aivive.gitbook.io', '_blank', 'noopener,noreferrer')}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-full group"
               >
                 Read Whitepaper
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 px-8 text-base rounded-full border-primary/20 hover:bg-primary/5"
-              >
-                View on GitHub
               </Button>
             </div>
           </div>
@@ -262,12 +243,13 @@ export function DevelopersSection() {
 
             {/* Links */}
             <div className="mt-6 flex items-center gap-6 text-sm">
-              <a href="#" className="text-primary hover:underline underline-offset-4">
+              <a
+                href="https://aivive.gitbook.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline underline-offset-4"
+              >
                 Whitepaper on GitBook
-              </a>
-              <span className="text-primary/20">|</span>
-              <a href="#" className="text-muted-foreground hover:text-foreground">
-                Dune Analytics
               </a>
             </div>
           </div>
