@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { toast } from "sonner";
 import { Logo } from "./logo";
+
+const APP_URL = "https://art.aivive.ai/";
 
 const navLinks = [
   { name: "Protocol", href: "#protocol" },
@@ -14,10 +15,7 @@ const navLinks = [
 ];
 
 function handleOpenApp() {
-  toast("Coming Soon", {
-    description: "AIVIVE app launching summer 2026. Join the waitlist below.",
-    duration: 3500,
-  });
+  window.open(APP_URL, "_blank", "noopener,noreferrer");
 }
 
 export function Navigation() {
