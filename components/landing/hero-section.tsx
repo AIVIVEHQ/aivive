@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { AnimatedSphere } from "./animated-sphere";
 
 const trustItems = [
@@ -172,13 +171,6 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-full group transition-shadow hover:shadow-[0_0_30px_oklch(0.902_0.152_174.5/0.3)]"
-            >
-              Join Waitlist
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
             <Button
               size="lg"
               variant="outline"
