@@ -14,7 +14,7 @@ import { FooterSection } from '@/components/landing/footer-section'
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden noise-overlay bg-background">
-      <SplashCursor />
+      <SplashCursor SPLAT_RADIUS={0.08} DENSITY_DISSIPATION={5} />
       <Navigation />
       <HeroSection />
       <InfrastructureSection />
