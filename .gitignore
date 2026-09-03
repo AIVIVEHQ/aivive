@@ -25,3 +25,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# internal wiki checkout (not part of the build)
+AIVEVE-wiki/
